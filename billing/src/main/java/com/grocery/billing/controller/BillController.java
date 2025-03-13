@@ -17,7 +17,9 @@ import com.grocery.billing.dto.BillRequestDto;
 import com.grocery.billing.dto.ResultBillDto;
 import com.grocery.billing.service.BillService;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping(value="/bills")
 public class BillController {

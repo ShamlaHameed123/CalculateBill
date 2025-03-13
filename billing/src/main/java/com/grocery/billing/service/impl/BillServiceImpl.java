@@ -2,6 +2,8 @@ package com.grocery.billing.service.impl;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +12,14 @@ import com.grocery.billing.dto.Item;
 import com.grocery.billing.service.BillService;
 import com.grocery.billing.service.ExchangeRateService;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 @Service
 public class BillServiceImpl implements BillService{
+	
+	private static final Logger logger = LoggerFactory.getLogger(BillServiceImpl.class);
 
 	
 	@Autowired
@@ -20,6 +28,7 @@ public class BillServiceImpl implements BillService{
 
 	@Override
 	public BigDecimal calculateBill(BillRequestDto billRequestDto) {
+		try {
 		BigDecimal totalBill = BigDecimal.ZERO;
 		BigDecimal nonGroceryTotal = BigDecimal.ZERO;
 		for(Item item : billRequestDto.getItems()) {
@@ -44,8 +53,12 @@ public class BillServiceImpl implements BillService{
 		BigDecimal discountedAmount = nonGroceryTotal.multiply(BigDecimal.valueOf(discountRate));
 		BigDecimal flatDiscountAmount = totalBill.divide(BigDecimal.valueOf(100)).multiply(BigDecimal.valueOf(5));
 		BigDecimal netAmount = totalBill.subtract(discountedAmount).subtract(flatDiscountAmount);
-		BigDecimal convertedAmount = exchangeRateService.getConvertedAmount(billRequestDto.getSourceCurrency(), billRequestDto.getTargetCurrency(), netAmount.toString());
-		return convertedAmount;
+		return exchangeRateService.getConvertedAmount(billRequestDto.getSourceCurrency(), billRequestDto.getTargetCurrency(), netAmount.toString());
+		}
+		catch(Exception e) {
+			logger.error(e.getLocalizedMessage());
+		}
+		return null;
 
 	}
 

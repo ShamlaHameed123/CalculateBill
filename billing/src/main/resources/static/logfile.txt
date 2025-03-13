@@ -1,0 +1,46 @@
+2025-03-13T07:55:03.744+04:00  INFO 86523 --- [billing] [main] com.grocery.billing.BillingApplication   : Starting BillingApplication using Java 17.0.12 with PID 86523 (/Users/shamlaabdulhameed/Downloads/BillService/billing/target/classes started by shamlaabdulhameed in /Users/shamlaabdulhameed/Downloads/BillService/billing)
+2025-03-13T07:55:03.746+04:00 DEBUG 86523 --- [billing] [main] com.grocery.billing.BillingApplication   : Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-13T07:55:03.747+04:00  INFO 86523 --- [billing] [main] com.grocery.billing.BillingApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-03-13T07:55:04.470+04:00  INFO 86523 --- [billing] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-13T07:55:04.479+04:00  INFO 86523 --- [billing] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-13T07:55:04.479+04:00  INFO 86523 --- [billing] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-13T07:55:04.515+04:00  INFO 86523 --- [billing] [main] o.a.c.c.C.[.[.[/billing-service]         : Initializing Spring embedded WebApplicationContext
+2025-03-13T07:55:04.516+04:00  INFO 86523 --- [billing] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 727 ms
+2025-03-13T07:55:04.690+04:00 DEBUG 86523 --- [billing] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 3 mappings in 'requestMappingHandlerMapping'
+2025-03-13T07:55:04.732+04:00 DEBUG 86523 --- [billing] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-03-13T07:55:04.755+04:00 DEBUG 86523 --- [billing] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-03-13T07:55:04.784+04:00 DEBUG 86523 --- [billing] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-03-13T07:55:04.853+04:00  WARN 86523 --- [billing] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 680c49c8-7f5e-4024-a0d7-ca7ba4fb55e3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-03-13T07:55:04.887+04:00  INFO 86523 --- [billing] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-03-13T07:55:05.018+04:00  INFO 86523 --- [billing] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/billing-service'
+2025-03-13T07:55:05.027+04:00  INFO 86523 --- [billing] [main] com.grocery.billing.BillingApplication   : Started BillingApplication in 1.536 seconds (process running for 7.139)
+2025-03-13T07:55:36.776+04:00  INFO 86523 --- [billing] [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/billing-service]         : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-13T07:55:36.780+04:00  INFO 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-13T07:55:36.781+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-03-13T07:55:36.781+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-03-13T07:55:36.781+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-03-13T07:55:36.782+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5d3f0af
+2025-03-13T07:55:36.782+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@3026dbbf
+2025-03-13T07:55:36.783+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-03-13T07:55:36.783+04:00  INFO 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-03-13T07:55:37.008+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/billing-service/bills/api/calculate", parameters={}
+2025-03-13T07:55:37.010+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.grocery.billing.controller.BillController#calculateNetAmount(BillRequestDto)
+2025-03-13T07:55:37.092+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [BillRequestDto(items=[Item(itemName=as, category=LUXURY, price=40), Item(itemName=yx, category=LUXUR (truncated)...]
+2025-03-13T07:55:37.102+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] c.grocery.billing.config.LoggingAspect   : Enter: com.grocery.billing.controller.BillController.calculateNetAmount() with argument[s] = [BillRequestDto(items=[Item(itemName=as, category=LUXURY, price=40), Item(itemName=yx, category=LUXURY, price=50), Item(itemName=bn, category=GROCERY, price=2.50), Item(itemName=abc, category=STATIONARY, price=100)], totalAmount=500, userType=CUSTOMER, customerTenure=1, sourceCurrency=AED, targetCurrency=INR)]
+2025-03-13T07:55:37.104+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] c.grocery.billing.config.LoggingAspect   : Enter: com.grocery.billing.service.impl.BillServiceImpl.calculateBill() with argument[s] = [BillRequestDto(items=[Item(itemName=as, category=LUXURY, price=40), Item(itemName=yx, category=LUXURY, price=50), Item(itemName=bn, category=GROCERY, price=2.50), Item(itemName=abc, category=STATIONARY, price=100)], totalAmount=500, userType=CUSTOMER, customerTenure=1, sourceCurrency=AED, targetCurrency=INR)]
+2025-03-13T07:55:37.104+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] c.grocery.billing.config.LoggingAspect   : Enter: com.grocery.billing.service.impl.ExchangeRateServiceImpl.getConvertedAmount() with argument[s] = [AED, INR, 182.875]
+2025-03-13T07:55:37.194+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.client.RestTemplate              : HTTP GET https://v6.exchangerate-api.com/v6/8559bd8b6e0fb4404c034dc4/pair/AED/INR/182.875
+2025-03-13T07:55:37.201+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/*+json, */*]
+2025-03-13T07:55:38.672+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.client.RestTemplate              : Response 200 OK
+2025-03-13T07:55:38.673+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+2025-03-13T07:55:38.678+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] c.grocery.billing.config.LoggingAspect   : Exit: com.grocery.billing.service.impl.ExchangeRateServiceImpl.getConvertedAmount() with result = 4343.8847375
+2025-03-13T07:55:38.679+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] c.grocery.billing.config.LoggingAspect   : Exit: com.grocery.billing.service.impl.BillServiceImpl.calculateBill() with result = 4343.8847375
+2025-03-13T07:55:38.682+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] c.grocery.billing.config.LoggingAspect   : Exit: com.grocery.billing.controller.BillController.calculateNetAmount() with result = <200 OK OK,ResultBillDto(amount=4343.88 INR),[]>
+2025-03-13T07:55:38.694+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-03-13T07:55:38.696+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ResultBillDto(amount=4343.88 INR)]
+2025-03-13T07:55:38.706+04:00 DEBUG 86523 --- [billing] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK

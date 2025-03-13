@@ -2,6 +2,8 @@ package com.grocery.billing.service.impl;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.grocery.billing.service.ExchangeRateService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ExchangeRateServiceImpl implements ExchangeRateService{
+	
+	private static final Logger logger = LoggerFactory.getLogger(ExchangeRateServiceImpl.class);
 	
 	@Value("${currency-exchange-rate.api-key}")
     private String apiKey;
@@ -37,9 +44,11 @@ public class ExchangeRateServiceImpl implements ExchangeRateService{
             if (jsonResponse.has("conversion_result")) {
                 return jsonResponse.get("conversion_result").getAsBigDecimal();
             } else {
+            	logger.error("Response is not valid, returned " + response);
                 throw new RuntimeException("Invalid response: " + response);
             }
         } catch (Exception e) {
+        	logger.error("Exception caught " + e);
             throw new RuntimeException("Error fetching exchange rate", e);
         }
     }
