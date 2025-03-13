@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.grocery.billing.dto.BillRequestDto;
 import com.grocery.billing.dto.Item;
+import com.grocery.billing.exception.CalculateBillFailedException;
 import com.grocery.billing.service.BillService;
 import com.grocery.billing.service.ExchangeRateService;
 
@@ -27,7 +28,7 @@ public class BillServiceImpl implements BillService{
 
 
 	@Override
-	public BigDecimal calculateBill(BillRequestDto billRequestDto) {
+	public BigDecimal calculateBill(BillRequestDto billRequestDto) throws CalculateBillFailedException {
 		try {
 		BigDecimal totalBill = BigDecimal.ZERO;
 		BigDecimal nonGroceryTotal = BigDecimal.ZERO;
@@ -56,9 +57,9 @@ public class BillServiceImpl implements BillService{
 		return exchangeRateService.getConvertedAmount(billRequestDto.getSourceCurrency(), billRequestDto.getTargetCurrency(), netAmount.toString());
 		}
 		catch(Exception e) {
-			logger.error(e.getLocalizedMessage());
+			logger.error("error calculating bill ", e.getLocalizedMessage(), e);
+			throw new CalculateBillFailedException("Error calculating bill");
 		}
-		return null;
 
 	}
 

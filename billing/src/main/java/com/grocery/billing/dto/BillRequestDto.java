@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,13 +23,15 @@ public class BillRequestDto implements Serializable{
 	private Set<Item> items;
 	
 	@NotNull(message="bill amount is mandatory")
+	@Min(value = 1, message = "invalid total bill amount")
 	private BigDecimal totalAmount;
 	
 	@NotBlank(message="user type is mandatory")
 	private String userType;
 	
-	@NotBlank(message="customer tenure is mandatory")
-	private int customerTenure;
+	@NotNull(message="customer tenure is mandatory")
+	@Min(value = 0, message = "invalid customer tenure")
+	private Integer customerTenure;
 	
 	@NotBlank(message="source currency is mandatory")
 	private String sourceCurrency;

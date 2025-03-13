@@ -3,7 +3,6 @@ package com.grocery.billing.controller;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grocery.billing.dto.BillRequestDto;
 import com.grocery.billing.dto.ResultBillDto;
+import com.grocery.billing.exception.CalculateBillFailedException;
 import com.grocery.billing.service.BillService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,7 +30,8 @@ public class BillController {
 	private BillService billService;
 	
 	@GetMapping("/api/calculate")
-	public ResponseEntity<ResultBillDto> calculateNetAmount(@RequestBody @Valid BillRequestDto billRequestDto) {
+	public ResponseEntity<ResultBillDto> calculateNetAmount(@RequestBody @Valid BillRequestDto billRequestDto) 
+																				throws CalculateBillFailedException {
 		BigDecimal netAmount = billService.calculateBill(billRequestDto);
 		return ResponseEntity.status(HttpStatus.OK).body(new ResultBillDto(netAmount.setScale(2, RoundingMode.HALF_EVEN) + " " + billRequestDto.getTargetCurrency()));
 		
