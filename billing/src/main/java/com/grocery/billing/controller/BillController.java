@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grocery.billing.dto.BillRequestDto;
 import com.grocery.billing.dto.ResultBillDto;
 import com.grocery.billing.exception.CalculateBillFailedException;
+import com.grocery.billing.exception.ExchangeRateApiError;
 import com.grocery.billing.service.BillService;
 
 import jakarta.validation.Valid;
@@ -31,7 +32,7 @@ public class BillController {
 	
 	@GetMapping("/api/calculate")
 	public ResponseEntity<ResultBillDto> calculateNetAmount(@RequestBody @Valid BillRequestDto billRequestDto) 
-																				throws CalculateBillFailedException {
+																				throws CalculateBillFailedException, ExchangeRateApiError {
 		BigDecimal netAmount = billService.calculateBill(billRequestDto);
 		return ResponseEntity.status(HttpStatus.OK).body(new ResultBillDto(netAmount.setScale(2, RoundingMode.HALF_EVEN) + " " + billRequestDto.getTargetCurrency()));
 		

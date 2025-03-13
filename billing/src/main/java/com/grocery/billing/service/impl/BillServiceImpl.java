@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.grocery.billing.dto.BillRequestDto;
 import com.grocery.billing.dto.Item;
 import com.grocery.billing.exception.CalculateBillFailedException;
+import com.grocery.billing.exception.ExchangeRateApiError;
 import com.grocery.billing.service.BillService;
 import com.grocery.billing.service.ExchangeRateService;
 
@@ -28,7 +29,7 @@ public class BillServiceImpl implements BillService{
 
 
 	@Override
-	public BigDecimal calculateBill(BillRequestDto billRequestDto) throws CalculateBillFailedException {
+	public BigDecimal calculateBill(BillRequestDto billRequestDto) throws ExchangeRateApiError, CalculateBillFailedException {
 		try {
 		BigDecimal totalBill = BigDecimal.ZERO;
 		BigDecimal nonGroceryTotal = BigDecimal.ZERO;
@@ -55,6 +56,10 @@ public class BillServiceImpl implements BillService{
 		BigDecimal flatDiscountAmount = totalBill.divide(BigDecimal.valueOf(100)).multiply(BigDecimal.valueOf(5));
 		BigDecimal netAmount = totalBill.subtract(discountedAmount).subtract(flatDiscountAmount);
 		return exchangeRateService.getConvertedAmount(billRequestDto.getSourceCurrency(), billRequestDto.getTargetCurrency(), netAmount.toString());
+		}
+		catch(ExchangeRateApiError e) {
+			logger.error("Exception caught " , e.getMessage(), e);
+            throw new ExchangeRateApiError(e.getMessage());
 		}
 		catch(Exception e) {
 			logger.error("error calculating bill ", e.getLocalizedMessage(), e);
